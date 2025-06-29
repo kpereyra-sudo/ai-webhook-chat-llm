@@ -40,8 +40,9 @@ To enable AI-powered natural language responses to incoming POST requests, with 
         "Comentario": "L mercancia se daño en un 20% de su contenido"
     } 
 
+---
 
-## 📤 Example Output
+## 📤Example Request
 ```json
 
 {
