@@ -36,7 +36,15 @@ To enable AI-powered natural language responses to incoming POST requests, with 
 ## 🧪 Example Request
 
 ```json
-{
-  "message": "The customer received the wrong item and wants a refund."
-}
+    {
+        "Comentario": "L mercancia se daño en un 20% de su contenido"
+    } 
 
+
+## 📤 Example Output
+```json
+
+{
+    "clasificacion": "negativo",
+    "justificacion": "el comentario indica que un 20% de la mercancía llegó dañada, lo cual es una experiencia negativa para el cliente."
+}
