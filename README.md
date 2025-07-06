@@ -27,10 +27,9 @@ To enable AI-powered natural language responses to incoming POST requests, with 
 1. A POST request is sent to a webhook (via Postman or another app).
 2. The message is passed to the **LLM Chain node** with a prompt.
 3. The response is parsed and returned with structured fields like:
-   - answer
-   - action_type
-   - suggestion
-4. The response can be reused or forwarded to other apps.
+   - `clasificacion`
+   - `justificacion`
+4. The response can be reused or forwarded to other systems.
 
 ---
 
@@ -38,7 +37,7 @@ To enable AI-powered natural language responses to incoming POST requests, with 
 
 ```json
 {
-  "message": "The customer received the wrong item and wants a refund."
+  "message": "El cliente indica que recibió la mercancía incompleta."
 }
 ```
 
@@ -46,9 +45,8 @@ To enable AI-powered natural language responses to incoming POST requests, with 
 
 ```json
 {
-  "answer": "I'm sorry to hear that. We will issue a refund and investigate.",
-  "action_type": "refund",
-  "suggestion": "Notify the support team and update the inventory system."
+  "clasificacion": "negativo",
+  "justificacion": "el comentario indica que un 20% de la mercancía llegó dañada, lo cual es una experiencia negativa para el cliente."
 }
 ```
 
