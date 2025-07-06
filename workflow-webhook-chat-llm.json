@@ -1,0 +1,190 @@
+{
+  "name": "Webhook - Katherine BI",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "prueba",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        160
+      ],
+      "id": "2082ceeb-c8f8-44a9-ac50-e2c1b7d6a084",
+      "name": "Webhook",
+      "webhookId": "6fab9604-fe6f-4981-9c71-a7fa7365ac92"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"clasificacion\": \"{{ $json.output.Clasificacion }}\",\n\n  \"justificacion\": \"{{ $json.output.justificacion }}\"\n\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        476,
+        160
+      ],
+      "id": "700892fa-2139-4c43-9535-9e509f1f038a",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.Comentario }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Rol Eres un sistema de IA especializado en analisis de sentimientos a partir de los comentarios de los clientes   \n# Contexto Vas a recibir la respuesta a la encuesta que realiza la empresa Mardom que se dedica a servicios logisticos integrados en Repúclica Dominicana, en esta encuesta se evalua los procesos de (transporte, aduana, almacenamiento).   los clientes a los que se le envian esta  encuesta suelen ser personas juridicas que transportan mercacia con Mardom.   \n# Tarea   \n## Paso 1 Recibir el comentario y analizarlo acorde al contexto de la empresa \n## Paso 2 Realizar un analisis del sentimiento del cliente a partir del comentario \n## Paso 3 Clasificación del comentario en positivo, neutral o negativo de acuerdo al analisis del paso 2. \n## Paso 4 Realizar una breve justificación del porque del sentimiento   \n# Formato para la respuesta debes responder en la variable \"clasificacion\" el analisis realizado en el punto 3 y en la variable \"justificacion\" el analisis del punto 4.   debes responder siempre en miniscula\n"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        100,
+        160
+      ],
+      "id": "5f5e2eb3-5fb4-4581-9698-2b00f438fd1c",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-001",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        128,
+        380
+      ],
+      "id": "94c43e0b-a01d-4d13-bbd9-4f3aebc6c731",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "H8APGivneYUpNwzV",
+          "name": "Google Gemini(PaLM) Katherine"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"Clasificacion\": \"\",\n    \"justificacion\": \"\"\n\t\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        248,
+        380
+      ],
+      "id": "1b96efa2-00dd-4a96-8b3f-5307f8e5fc1b",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "ia-lab-mardom",
+          "mode": "list",
+          "cachedResultName": "IA Lab MARDOM"
+        },
+        "modelName": "gemini-2.0-flash-001",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        520
+      ],
+      "id": "75e96099-1e58-4c7e-b548-93316d466154",
+      "name": "Google Vertex Chat Model",
+      "credentials": {
+        "googleApi": {
+          "id": "lMub46NNAhtzcEt5",
+          "name": "Google Vertex Katherine"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Vertex Chat Model": {
+      "ai_languageModel": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "840b1d4b-72a3-4253-857c-97e43e726712",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3c2ce9fa97e5a126a824ca3b263fac3303d1b41c5df3f63cb7b5d83d600d8c94"
+  },
+  "id": "jbfChbTLgiyVSdOb",
+  "tags": [
+    {
+      "createdAt": "2025-04-29T18:57:54.981Z",
+      "updatedAt": "2025-04-29T18:57:54.981Z",
+      "id": "Yb4SQ4MMw5fof8qk",
+      "name": "BI"
+    }
+  ]
+}
