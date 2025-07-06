@@ -64,8 +64,9 @@ To enable AI-powered natural language responses to incoming POST requests, with 
 
 ## 📂 Files
 
+- `workflow-webhook-chat-llm.json`: Exported n8n flow for chatbot automation.
 - `screenshots/`: Workflow visuals
-- `workflow-export.json`: Exported n8n flow for chatbot automation.
+
 
 
 ---
