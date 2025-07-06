@@ -1,3 +1,4 @@
+
 # 🤖 Webhook-based AI Chat with LLM
 
 This project implements a basic conversational AI system using **n8n**, triggered by **webhooks**, and powered by **Google Gemini** via **LLM Chain** and structured output parser.
@@ -36,16 +37,37 @@ To enable AI-powered natural language responses to incoming POST requests, with 
 ## 🧪 Example Request
 
 ```json
-    {
-        "Comentario": "L mercancia se daño en un 20% de su contenido"
-    } 
+{
+  "message": "The customer received the wrong item and wants a refund."
+}
+```
+
+## 📤 Example Output
+
+```json
+{
+  "answer": "I'm sorry to hear that. We will issue a refund and investigate.",
+  "action_type": "refund",
+  "suggestion": "Notify the support team and update the inventory system."
+}
+```
 
 ---
 
-## 📤Example Request
-```json
+## 🖼️ Screenshots
 
-{
-    "clasificacion": "negativo",
-    "justificacion": "el comentario indica que un 20% de la mercancía llegó dañada, lo cual es una experiencia negativa para el cliente."
-}
+| Webhook Trigger | LLM Chain Output |
+|-----------------|------------------|
+| ![](screenshots/webhook_trigger.png) | ![](screenshots/llm_chain_response.png) |
+
+---
+
+## 📂 Files
+
+- `screenshots/`: Workflow visuals
+
+---
+
+## 👩‍💻 Created by
+
+[Katherine Pereyra](https://github.com/katherinepereyra) – Data & AI Developer specializing in generative AI automation.
