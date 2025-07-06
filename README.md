@@ -73,4 +73,4 @@ To enable AI-powered natural language responses to incoming POST requests, with 
 
 ## 👩‍💻 Created by
 
-[Katherine Pereyra](https://github.com/katherinepereyra) – Data & AI Developer specializing in generative AI automation.
+[Katherine Pereyra](https://github.com/kpereyra-sudo/katherinepereyra) – Data & AI Developer specializing in generative AI automation.
