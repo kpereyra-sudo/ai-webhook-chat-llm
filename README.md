@@ -56,9 +56,9 @@ To enable AI-powered natural language responses to incoming POST requests, with 
 
 ## 🖼️ Screenshots
 
-| Webhook Trigger | LLM Chain Output |
-|-----------------|------------------|
-| ![](screenshots/webhook_trigger.png) | ![](screenshots/llm_chain_response.png) |
+| Webhook Trigger | LLM Chain Output | Workflow Webhook Chat llm |
+|-----------------|------------------|------------------|
+| ![](screenshots/webhook_trigger.png) | ![](screenshots/llm_chain_response.png) |![](screenshots/Workflow visuals.png) |
 
 ---
 
