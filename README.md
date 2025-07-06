@@ -65,6 +65,8 @@ To enable AI-powered natural language responses to incoming POST requests, with 
 ## 📂 Files
 
 - `screenshots/`: Workflow visuals
+- `workflow-export.json`: Exported n8n flow for chatbot automation.
+
 
 ---
 
